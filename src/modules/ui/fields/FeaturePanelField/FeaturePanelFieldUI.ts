@@ -68,24 +68,38 @@ export default abstract class FeaturePanelFieldUI extends BaseField {
 		this.refreshFields();
 	}
 
+    private getTabLabel(): string {
+        switch (this.feature) {
+            case Feature.modes:
+            case Feature.fan_mode:
+                return 'Режим';
+            case Feature.sensor:
+                return 'Датчик';
+            default:
+                return 'Блок';
+        }
+    }
+
 	private refreshTabButtons(): void {
-		this.selectedTab = this.selectedTab ?? this.tabs[0];
-		this.tabsContainer.innerHTML = '';
+        this.selectedTab = this.selectedTab ?? this.tabs[0];
+        this.tabsContainer.innerHTML = '';
 
-		this.tabs.forEach((tab: Tab, index: number) => {
-			const button = document.createElement('button');
-			button.classList.add(ViewId.TABS_PANEL_TAB);
-			button.classList.toggle('active', tab === this.selectedTab);
-			button.textContent = `${this.selectedTab === tab ? 'Режим ' : ''}#${index + 1}`;
+        const tabLabel = this.getTabLabel();
 
-			button.addEventListener('click', () => {
-				this.selectedTab = tab;
-				this.refreshUI();
-			});
+        this.tabs.forEach((tab: Tab, index: number) => {
+            const button = document.createElement('button');
+            button.classList.add(ViewId.TABS_PANEL_TAB);
+            button.classList.toggle('active', tab === this.selectedTab);
+            button.textContent = `${this.selectedTab === tab ? `${tabLabel} · ` : ''}${index + 1}`;
 
-			this.tabsContainer.appendChild(button);
-		});
-	}
+            button.addEventListener('click', () => {
+                this.selectedTab = tab;
+                this.refreshUI();
+            });
+
+            this.tabsContainer.appendChild(button);
+        });
+    }
 
 	private refreshFields(): void {
 		this.fieldContainer.innerHTML = '';
@@ -137,9 +151,9 @@ export default abstract class FeaturePanelFieldUI extends BaseField {
 		};
 
 		buttonsContainer.append(
-			makeButton('Добавить новую', () => this.buttonsHandler.onAdd()),
-			makeButton('Сохранить вкладку', () => this.buttonsHandler.onSave()),
-			makeButton('Удалить текущую', () => this.buttonsHandler.onDelete()),
+			makeButton('Добавить', () => this.buttonsHandler.onAdd()),
+			makeButton('Сохранить', () => this.buttonsHandler.onSave()),
+			makeButton('Удалить', () => this.buttonsHandler.onDelete()),
 		);
 
 		return buttonsContainer;
