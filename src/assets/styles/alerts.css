@@ -1,0 +1,45 @@
+/* alerts.css */
+#error,
+.error {
+	color: #ef5350;
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+
+.error-text,
+.field-error {
+	color: #ef5350;
+	font-size: 0.8em;
+	margin-top: 2px;
+	display: block;
+}
+
+.success {
+	color: #4caf50;
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+
+.required-field {
+	color: #b0bec5;
+	font-size: 0.8em;
+	margin-top: 2px;
+}
+
+#message-box {
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 4px;
+	font-size: 0.9em;
+	text-align: center;
+}
+
+#message-box.error {
+	background-color: #ef5350;
+	color: #ffffff;
+}
+
+#message-box.success {
+	background-color: #4caf50;
+	color: #ffffff;
+}

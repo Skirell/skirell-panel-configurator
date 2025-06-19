@@ -1,0 +1,72 @@
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="default-src 'self'; 
+                    script-src 'self' 'unsafe-inline'; 
+                    style-src 'self' 'unsafe-inline';
+                    img-src 'self' data:;
+                    font-src 'self' data:;
+                    connect-src 'self' ws: wss:;
+                    frame-src 'self';
+                    "
+		/>
+		<title>Конфигуратор панели умного дома</title>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+
+	<body>
+		<div class="sidebar" id="sidebar">
+			<h2>Меню</h2>
+			<p id="show-start-page-button">Начальная страница</p>
+			<ul id="menu"></ul>
+			<div class="menu-buttons">
+				<button id="show-json-preview-button" class="menu-button">
+					Предпросмотр
+				</button>
+				<button id="save-config-button" class="menu-button">
+					Сохранить
+				</button>
+			</div>
+		</div>
+		<div class="content" id="content">
+			<h1>Конфигуратор панели умного дома</h1>
+			<div id="start-page">
+				<p>
+					Добро пожаловать! Создайте новую конфигурацию через меню или
+					загрузите уже готовые настройки для дальнейшего редактирования.
+				</p>
+				<button id="load-config-button">Загрузить JSON</button>
+			</div>
+			<div id="page-list" class="hidden"></div>
+			<div id="block-config" class="hidden">
+				<div class="form-group">
+					<label for="block-type">Тип блока:</label>
+					<select id="block-type">
+						<option value="">Выберите тип</option>
+					</select>
+					<span class="error-text" id="block-type-error"></span>
+				</div>
+				<div id="subtype-container" class="form-group hidden">
+					<label for="block-subtype">Подтип:</label>
+					<select id="block-subtype"></select>
+					<span class="error-text" id="block-subtype-error"></span>
+				</div>
+				<div id="block-fields"></div>
+				<button id="save-block-button">Сохранить блок</button>
+				<button id="remove-block-button">Удалить блок</button>
+				<div id="block-error" class="error"></div>
+			</div>
+			<div id="full-json-preview" class="hidden">
+				<h2>Предпросмотр полного JSON</h2>
+				<pre id="full-json-output"></pre>
+			</div>
+		</div>
+
+		<script>
+			var exports = {};
+		</script>
+		<script src="../../core/render/renderer.js"></script>
+	</body>
+</html>

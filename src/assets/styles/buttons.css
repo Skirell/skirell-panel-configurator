@@ -1,0 +1,68 @@
+/* buttons.css */
+button {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 14px;
+	background-color: #444;
+	color: #ddd;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+button:hover {
+	background-color: #5a5a5a;
+}
+
+.menu-button {
+	margin-bottom: 10px;
+}
+
+.menu-button:active {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#save-config-button {
+	background-color: #444;
+	padding: 10px 15px;
+	font-size: 0.9em;
+	display: inline-block;
+	text-align: center;
+}
+
+#save-config-button:hover {
+	background-color: #5a5a5a;
+}
+
+#save-block-button {
+	margin-top: 10px;
+	padding: 10px 15px;
+	font-size: 0.9em;
+	width: 100%;
+	max-width: 400px;
+	background-color: #00bd3f;
+	color: #ffffff;
+	text-align: center;
+}
+
+#save-block-button:hover {
+	background-color: #01fe56;
+}
+
+#remove-block-button {
+	margin-top: 10px;
+	padding: 10px 0;
+	font-size: 0.9em;
+	max-width: 400px;
+	display: block;
+	background: none;
+	color: #cdcdcd;
+	text-decoration: none;
+	text-align: center;
+}
+
+#remove-block-button:hover {
+	color: #ffffff;
+}

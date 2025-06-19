@@ -1,0 +1,68 @@
+/* sidebar.css */
+#show-start-page-button {
+	font-size: 1em;
+	font-weight: normal;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+#show-start-page-button:hover {
+	color: #dadada;
+}
+
+.sidebar h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	font-size: 1.5em;
+	font-weight: 500;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 20px 0;
+}
+
+.sidebar ul li {
+	padding: 12px 15px;
+	cursor: pointer;
+	border-left: 3px solid transparent;
+	font-size: 1em;
+	transition: background 0.2s;
+	margin: 5px 0;
+}
+
+.sidebar ul li:hover {
+	background: #424242;
+	border-left: 3px solid #b0bec5;
+}
+
+.sidebar .block-item,
+.add-block,
+.add-page {
+	padding: 10px 15px 10px 30px;
+	font-size: 0.9em;
+	margin: 5px 0;
+	cursor: pointer;
+	transition:
+		background 0.2s,
+		color 0.2s;
+}
+
+.sidebar .block-item {
+	background: #2a2a2a;
+}
+
+.sidebar .block-item:hover {
+	background: #383838;
+}
+
+.add-block,
+.add-page {
+	color: #b0bec5;
+}
+
+.add-block:hover,
+.add-page:hover {
+	color: #ffffff;
+}

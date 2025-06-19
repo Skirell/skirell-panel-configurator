@@ -1,0 +1,28 @@
+/* preview.css */
+#full-json-preview {
+	position: fixed;
+	top: 0;
+	left: 300px;
+	right: 0;
+	bottom: 0;
+	background: #2a2a2a;
+	padding: 20px;
+	z-index: 1000;
+}
+
+#full-json-preview h2 {
+	color: #ffffff;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+
+#full-json-output {
+	background: #333333;
+	padding: 15px;
+	border-radius: 4px;
+	color: #ffffff;
+	font-family: monospace;
+	max-height: 82vh;
+	overflow-y: auto;
+	white-space: pre-wrap;
+}

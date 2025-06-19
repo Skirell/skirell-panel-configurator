@@ -1,0 +1,139 @@
+/* components.css */
+.color-dropdown {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+}
+
+.color-dropdown-button {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #424242;
+	border-radius: 4px;
+	background: #333;
+	color: #fff;
+	font-size: 1em;
+	min-height: 38px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.color-dropdown-button:hover {
+	background: #2a2a2a;
+}
+
+.color-dropdown-content {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	width: 100%;
+	background: #2a2a2a;
+	border: 1px solid #424242;
+	border-radius: 4px;
+	margin-bottom: 5px;
+	max-height: 300px;
+	overflow-y: auto;
+	z-index: 1000;
+	box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.color-option {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.color-option:hover {
+	background: var(--color-bg-sidebar);
+}
+
+.color-box {
+	width: 40px;
+	height: 20px;
+	border-radius: 5px;
+	border: 1px solid #424242;
+}
+
+.color-label {
+	color: #fff;
+}
+
+.tabs-panel-container {
+	border-radius: 8px;
+	width: 400px;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	margin-right: auto;
+}
+
+.tabs-panel-tabs {
+	display: flex;
+	gap: 3px;
+	overflow-x: auto;
+	padding: 0;
+}
+
+.tabs-panel-content {
+	background: #444;
+	border-radius: 0 0 8px 8px;
+	padding: 20px;
+}
+
+.tabs-panel-tab {
+	flex: 0 1 40px;
+	min-width: 75px;
+	min-height: 50px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	background: #3a3a3a;
+	color: #6c6c6c;
+	border: none;
+	border-radius: 8px 8px 0 0;
+	font-size: 1em;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: -10px;
+}
+
+.tabs-panel-tab:not(.active) {
+	margin-top: 4px;
+}
+
+.tabs-panel-tab.active {
+	flex-grow: 2;
+	background: #444;
+	color: #bcbcbc;
+	margin-top: 0;
+	z-index: 2;
+	box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tabs-panel-buttons {
+	display: flex;
+	gap: 16px;
+	justify-content: flex-end;
+}
+
+.tabs-panel-btn {
+	background: #6a6a6a;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.tabs-panel-btn:hover {
+	background: #7e7e7e;
+}
