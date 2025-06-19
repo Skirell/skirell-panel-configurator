@@ -31,4 +31,6 @@ interface ParamOption {
 	required?: true;
 	// путь сохранения в таблице относительно блока, например: 'data', 'data/variant', 'data/variant/something'
 	savePath?: Path;
+    // порядок поля в JSON (меньше значение — выше поле)
+    order?: number;
 }

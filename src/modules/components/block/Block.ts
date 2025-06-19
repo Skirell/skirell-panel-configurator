@@ -8,6 +8,8 @@ import { isFieldInBase, isFieldInVariant } from '../../../utils/option-utils';
 import { getByPath, setByPath } from '../../../utils/path-utils';
 import { Page } from '../page/Page';
 import BlockUI from './BlockUI';
+import { ParamOption } from '../../../global/types/option';
+import BaseField from '../../ui/fields/BaseField';
 
 export default class Block implements IJsonSerializable {
 	private device: Device | null = null;
@@ -39,16 +41,42 @@ export default class Block implements IJsonSerializable {
 	}
 
 	public toJSON(): SerializedBlock {
-		return {
-			block: this.Index,
-			type: this.device!,
-			data: {
-				...this.data,
-				variant: this.requiresVariant() ? this.data.variant : undefined,
-				variant_type: this.deviceVariant ?? undefined,
-			},
-		};
-	}
+        // Создаём упорядоченный объект data
+        const orderedData: Record<string, any> = {};
+
+        // Получаем поля из UI и сортируем их по order
+        const fields: BaseField[] = Array.from(this.UI.getFields().values());
+        const sortedFields = fields.sort((a: BaseField, b: BaseField) => {
+            const orderA = a.option.order ?? Infinity;
+            const orderB = b.option.order ?? Infinity;
+            return orderA - orderB;
+        });
+
+        // Добавляем поля в порядке сортировки
+        sortedFields.forEach((field: BaseField) => {
+            const key = field.key;
+            const option = field.option;
+            const path = this.resolvePath(key, option.savePath);
+            const value = getByPath(this, path);
+            if (value !== undefined) {
+                orderedData[key] = value;
+            }
+        });
+
+        // Добавляем variant и variant_type, если они есть
+        if (this.requiresVariant() && this.data.variant) {
+            orderedData.variant = this.data.variant;
+        }
+        if (this.deviceVariant) {
+            orderedData.variant_type = this.deviceVariant;
+        }
+
+        return {
+            block: this.Index,
+            type: this.device!,
+            data: orderedData,
+        };
+    }
 
 	public resolvePath(fieldKey: string, overridePath?: string): string {
 		const basePath =
