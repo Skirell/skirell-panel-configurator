@@ -5,13 +5,13 @@ export const VARIANT_OPTIONS = new Map<DeviceVariant, EnumOption>([
 	[
 		DeviceVariant.light_variant_OnOff,
 		{
-			label: 'Вкл/Выкл - Реле',
+			label: 'Вкл/Выкл',
 		},
 	],
 	[
 		DeviceVariant.light_variant_dimmer,
 		{
-			label: 'Яркость - Диммер',
+			label: 'Яркость',
 		},
 	],
 	[
@@ -47,3 +47,13 @@ export const VARIANT_OPTIONS = new Map<DeviceVariant, EnumOption>([
 		},
 	],
 ]) as ReadonlyMap<DeviceVariant, EnumOption>;
+
+export const VARIANT_ORDER: DeviceVariant[] = [
+    DeviceVariant.light_variant_OnOff,
+    DeviceVariant.light_variant_dimmer,
+    DeviceVariant.light_variant_color,
+    DeviceVariant.light_variant_temperature,
+    DeviceVariant.climate_variant_cond,
+    DeviceVariant.climate_variant_thermostat,
+    DeviceVariant.cover_variant_slider,
+];

@@ -37,3 +37,11 @@ export const DEVICE_OPTIONS = new Map<Device, EnumOption>([
 		},
 	],
 ]) as ReadonlyMap<Device, EnumOption>;
+
+export const DEVICE_ORDER: Device[] = [
+    Device.scene,
+    Device.light,
+    Device.climate,
+    Device.cover,
+    Device.sensor,
+];

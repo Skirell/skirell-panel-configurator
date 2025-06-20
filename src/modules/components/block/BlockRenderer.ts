@@ -3,7 +3,9 @@ import { Device, DeviceVariant } from '../../../data/enums/device';
 import { ViewId } from '../../../data/enums/view-id';
 import { DEVICE_VARIANT_MAP } from '../../../data/settings/maps/device-variant-map';
 import { DEVICE_OPTIONS } from '../../../data/settings/options/device-options';
+import { DEVICE_ORDER } from '../../../data/settings/options/device-options';
 import { VARIANT_OPTIONS } from '../../../data/settings/options/variant-options';
+import { VARIANT_ORDER } from '../../../data/settings/options/variant-options';
 import { forEachEnum } from '../../../utils/enum-utils';
 import blockManager from '../../managers/BlockManager/BlockManager';
 import eventManager from '../../managers/EventManager/EventManager';
@@ -52,42 +54,47 @@ export class BlockRenderer {
 	}
 
 	public refillDeviceOptions(): void {
-		const selectElement = this.view.elements.deviceType;
-		selectElement.innerHTML = `<option value="">Выберите тип</option>`;
-
-		forEachEnum(Device, (_, value: Device) => {
-			const label = DEVICE_OPTIONS.get(value)?.label ?? value;
-			selectElement.insertAdjacentHTML(
-				'beforeend',
-				`<option value="${value}">${label}</option>`,
-			);
-		});
-
-		selectElement.selectedIndex = 0;
-	}
+        const selectElement = this.view.elements.deviceType;
+        selectElement.innerHTML = `<option value="">Выберите тип</option>`;
+    
+        for (const deviceType of DEVICE_ORDER) {
+            const label = DEVICE_OPTIONS.get(deviceType)?.label ?? deviceType;
+            selectElement.insertAdjacentHTML(
+                'beforeend',
+                `<option value="${deviceType}">${label}</option>`,
+            );
+        }
+    
+        selectElement.selectedIndex = 0;
+    }
 
 	public refillDeviceVariantOptions(): void {
-		const { deviceType, deviceVariant } = this.view.elements;
-		const container = deviceVariant.closest(`#${ViewId.SUBTYPE_CONTAINER}`);
-
-		const type = deviceType.value as Device;
-		const variants = DEVICE_VARIANT_MAP.get(type);
-
-		if (!variants || !variants.length) {
-			container?.classList.add('hidden');
-			return;
-		}
-
-		container?.classList.remove('hidden');
-		deviceVariant.innerHTML = `<option value="">Выберите подтип</option>`;
-
-		for (const variant of variants) {
-			const label = VARIANT_OPTIONS.get(variant)?.label ?? variant;
-			deviceVariant.innerHTML += `<option value="${variant}">${label}</option>`;
-		}
-
-		deviceVariant.selectedIndex = 0;
-	}
+        const { deviceType, deviceVariant } = this.view.elements;
+        const container = deviceVariant.closest(`#${ViewId.SUBTYPE_CONTAINER}`);
+    
+        const type = deviceType.value as Device;
+        const variants = DEVICE_VARIANT_MAP.get(type);
+    
+        if (!variants || !variants.length) {
+            container?.classList.add('hidden');
+            return;
+        }
+    
+        container?.classList.remove('hidden');
+        deviceVariant.innerHTML = `<option value="">Выберите подтип</option>`;
+    
+        for (const variant of VARIANT_ORDER) {
+            if (variants.includes(variant)) {
+                const optionData = VARIANT_OPTIONS.get(variant);
+                if (optionData) {
+                    const label = optionData.label ?? variant;
+                    deviceVariant.innerHTML += `<option value="${variant}">${label}</option>`;
+                }
+            }
+        }
+    
+        deviceVariant.selectedIndex = 0;
+    }
 
 	public refreshHeader(): void {
 		const block = blockManager.SelectedBlock;
