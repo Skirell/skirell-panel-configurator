@@ -55,7 +55,7 @@ export class BlockRenderer {
 
 	public refillDeviceOptions(): void {
         const selectElement = this.view.elements.deviceType;
-        selectElement.innerHTML = `<option value="">Выберите тип</option>`;
+        selectElement.innerHTML = `<option value="" disabled>Выберите тип</option>`;
     
         for (const deviceType of DEVICE_ORDER) {
             const label = DEVICE_OPTIONS.get(deviceType)?.label ?? deviceType;
@@ -66,6 +66,14 @@ export class BlockRenderer {
         }
     
         selectElement.selectedIndex = 0;
+
+        selectElement.addEventListener('change', (event) => {
+            const select = event.target as HTMLSelectElement;
+            if (select.value === '') {
+                select.selectedIndex = -1;
+                select.blur();
+            }
+        });
     }
 
 	public refillDeviceVariantOptions(): void {
@@ -81,7 +89,7 @@ export class BlockRenderer {
         }
     
         container?.classList.remove('hidden');
-        deviceVariant.innerHTML = `<option value="">Выберите подтип</option>`;
+        deviceVariant.innerHTML = `<option value="" disabled>Выберите подтип</option>`;
     
         for (const variant of VARIANT_ORDER) {
             if (variants.includes(variant)) {
@@ -94,6 +102,14 @@ export class BlockRenderer {
         }
     
         deviceVariant.selectedIndex = 0;
+    
+        deviceVariant.addEventListener('change', (event) => {
+            const select = event.target as HTMLSelectElement;
+            if (select.value === '') {
+                select.selectedIndex = -1;
+                select.blur();
+            }
+        });
     }
 
 	public refreshHeader(): void {

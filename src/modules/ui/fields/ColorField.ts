@@ -57,6 +57,7 @@ export default class ColorField extends BaseField<string> {
 		const button = document.createElement('button');
 		button.type = 'button';
 		button.classList.add('color-dropdown-button');
+        
 		// устанавливаем текст/цвет по value
 		if (this.value) {
 			const option = COLOR_OPTIONS.get(this.value as Color);
@@ -73,13 +74,6 @@ export default class ColorField extends BaseField<string> {
 		const dropdownList = document.createElement('div');
 		dropdownList.classList.add(ViewId.COLOR_DROPDOWN_CONTENT);
 		dropdownList.style.display = 'none';
-
-		// пустая опция
-		dropdownList.appendChild(
-			this.buildOption({ label: 'Выберите цвет', color: '' }, () => {
-				this.clearSelection();
-			}),
-		);
 
 		// реальные цвета
 		COLOR_OPTIONS.forEach((option: ColorOption, color: Color) => {
