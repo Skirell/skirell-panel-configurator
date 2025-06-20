@@ -110,6 +110,38 @@ export default abstract class BaseField<T = any> {
 		return label;
 	}
 
+    protected updateLabel(newOption: ParamOption): void {
+        if (this.labelElement) {
+            const existingStar = this.labelElement.querySelector(
+                `.${SpanClass.REQUIRED}`
+            );
+            if (existingStar) existingStar.remove();
+    
+            this.labelElement.textContent = newOption.label;
+    
+            if (newOption.required) {
+                this.labelElement.appendChild(createRequiredSpan());
+            }
+        }
+    }
+
+    public setOption(option: ParamOption): void {
+        this.required = option.required ?? false;
+        this.settings = option.fieldSettings ?? {};
+    
+        // Обновляем label
+        this.updateLabel(option);
+    
+        if (this.inputElement && this.inputElement instanceof HTMLInputElement) {
+            this.inputElement.placeholder =
+                this.option.placeholder ??
+                `${this.required ? 'Обязательное' : 'Необязательное'} поле`;
+            this.inputElement.required = this.required;
+        }
+
+        this.refreshUI();
+    }
+
 	protected buildInputElement(type: string): HTMLInputElement {
 		const input = document.createElement('input');
 		input.type = type;

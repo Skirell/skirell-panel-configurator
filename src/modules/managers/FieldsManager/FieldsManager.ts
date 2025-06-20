@@ -63,7 +63,12 @@ export default abstract class FieldsManager {
 		doInit = true,
 	) {
 		paramOptions.forEach((opt, key) => {
-			if (this.fields.has(key)) return;
+			if (this.fields.has(key)) {
+                const field = this.fields.get(key)!;
+                field.setOption(opt);
+                return;
+            }
+
 			const initialValue = this.getParamValue(key, opt.savePath);
 			const field = this.createFieldFunc(key, opt, initialValue);
 			if (field) {

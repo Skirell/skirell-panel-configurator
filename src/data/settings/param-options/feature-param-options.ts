@@ -8,7 +8,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'title',
 				{
-					label: 'title',
+					label: 'title — названия в настройках',
 					fieldType: 'text',
 					required: true,
 				},
@@ -16,7 +16,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'color',
 				{
-					label: 'color',
+					label: 'color — цвет кругового ползунка',
 					fieldType: 'color',
 					required: true,
 				},
@@ -24,7 +24,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'icon',
 				{
-					label: 'icon',
+					label: 'icon — иконка',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
@@ -33,7 +33,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'payload',
 				{
-					label: 'payload',
+					label: 'payload — сообщение для MQTT-топиков',
 					fieldType: 'text',
 					required: true,
 				},
@@ -46,7 +46,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'icon',
 				{
-					label: 'icon',
+					label: 'icon — иконка',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
@@ -55,7 +55,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 			[
 				'payload',
 				{
-					label: 'payload',
+					label: 'payload — сообщение для MQTT-топиков',
 					fieldType: 'text',
 					required: true,
 				},
@@ -66,7 +66,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 		Feature.sensor,
 		new Map<string, ParamOption>([
 			[
-				'icon',
+				'icon — иконка, отображаемая в настройках.',
 				{
 					label: 'icon',
 					fieldType: 'icon',
@@ -75,7 +75,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				},
 			],
 			[
-				'measure',
+				'measure — единица измерения (например: «°C»)',
 				{
 					label: 'measure',
 					fieldType: 'text',
@@ -83,7 +83,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				},
 			],
 			[
-				'state_topic',
+				'state_topic - MQTT-топик обратной связи',
 				{
 					label: 'state_topic',
 					fieldType: 'text',

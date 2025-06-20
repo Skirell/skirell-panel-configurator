@@ -15,7 +15,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_command_topic',
 				{
-					label: 'OnOff_command_topic',
+					label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
 					fieldType: 'text',
 					required: true,
 				},
@@ -23,7 +23,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_state_topic',
 				{
-					label: 'OnOff_state_topic',
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
 					fieldType: 'text',
 					required: true,
 				},
@@ -31,7 +31,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_on',
 				{
-					label: 'payload_on',
+					label: 'payload_on — Команда(Сообщение) для включения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -39,7 +39,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_off',
 				{
-					label: 'payload_off',
+					label: 'payload_off — Команда(Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -52,7 +52,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_command_topic',
 				{
-					label: 'OnOff_command_topic',
+					label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
 					fieldType: 'text',
 					required: true,
 				},
@@ -60,7 +60,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_state_topic',
 				{
-					label: 'OnOff_state_topic',
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
 					fieldType: 'text',
 					required: true,
 				},
@@ -68,7 +68,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_on',
 				{
-					label: 'payload_on',
+					label: 'payload_on — Команда(Сообщение) для включения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -76,7 +76,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_off',
 				{
-					label: 'payload_off',
+					label: 'payload_off — Команда(Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -84,7 +84,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_command_topic',
 				{
-					label: 'brightness_command_topic',
+					label: 'brightness_command_topic — Командный MQTT-топик для отправки яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -92,7 +92,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_state_topic',
 				{
-					label: 'brightness_state_topic',
+					label: 'brightness_state_topic — MQTT-топик обратной связи для получения яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -100,7 +100,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_scale',
 				{
-					label: 'brightness_scale',
+					label: 'brightness_scale — Максимальное значение яркости',
 					fieldType: 'number',
 					required: true,
 				},
@@ -111,9 +111,9 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 		DeviceVariant.light_variant_color,
 		new Map<string, ParamOption>([
 			[
-				'OnOff_command_topic',
+            'OnOff_command_topic',
 				{
-					label: 'OnOff_command_topic',
+					label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
 					fieldType: 'text',
 					required: true,
 				},
@@ -121,7 +121,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_state_topic',
 				{
-					label: 'OnOff_state_topic',
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
 					fieldType: 'text',
 					required: true,
 				},
@@ -129,7 +129,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_on',
 				{
-					label: 'payload_on',
+					label: 'payload_on — Команда(Сообщение) для включения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -137,15 +137,15 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_off',
 				{
-					label: 'payload_off',
+					label: 'payload_off — Команда(Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
-			],
+            ],
 			[
 				'brightness_command_topic',
 				{
-					label: 'brightness_command_topic',
+					label: 'brightness_command_topic — Командный MQTT-топик для отправки яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -153,7 +153,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_state_topic',
 				{
-					label: 'brightness_state_topic',
+					label: 'brightness_state_topic — MQTT-топик обратной связи для получения яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -161,7 +161,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_scale',
 				{
-					label: 'brightness_scale',
+					label: 'brightness_scale — Максимальное значение яркости',
 					fieldType: 'number',
 					required: true,
 				},
@@ -169,7 +169,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'color_command_topic',
 				{
-					label: 'color_command_topic',
+					label: 'color_command_topic — Командный MQTT-топик для отправки цвета',
 					fieldType: 'text',
 					required: true,
 				},
@@ -180,41 +180,41 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 		DeviceVariant.light_variant_temperature,
 		new Map<string, ParamOption>([
 			[
-				'OnOff_command_topic',
-				{
-					label: 'OnOff_command_topic',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'OnOff_state_topic',
-				{
-					label: 'OnOff_state_topic',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'payload_on',
-				{
-					label: 'payload_on',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'payload_off',
-				{
-					label: 'payload_off',
-					fieldType: 'text',
-					required: true,
-				},
-			],
+                'OnOff_command_topic',
+                {
+                    label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
+                    fieldType: 'text',
+                    required: true,
+                },
+            ],
+            [
+                'OnOff_state_topic',
+                {
+                    label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
+                    fieldType: 'text',
+                    required: true,
+                },
+            ],
+            [
+                'payload_on',
+                {
+                    label: 'payload_on — Команда(Сообщение) для включения',
+                    fieldType: 'text',
+                    required: true,
+                },
+            ],
+            [
+                'payload_off',
+                {
+                    label: 'payload_off — Команда(Сообщение) для выключения',
+                    fieldType: 'text',
+                    required: true,
+                },
+            ],
 			[
 				'brightness_command_topic',
 				{
-					label: 'brightness_command_topic',
+					label: 'brightness_command_topic — Командный MQTT-топик для отправки яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -222,7 +222,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_state_topic',
 				{
-					label: 'brightness_state_topic',
+					label: 'brightness_state_topic — MQTT-топик обратной связи для получения яркости',
 					fieldType: 'text',
 					required: true,
 				},
@@ -230,7 +230,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'brightness_scale',
 				{
-					label: 'brightness_scale',
+					label: 'brightness_scale — Максимальное значение яркости',
 					fieldType: 'number',
 					required: true,
 				},
@@ -238,7 +238,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'temp_command_topic',
 				{
-					label: 'temp_command_topic',
+					label: 'temp_command_topic — Командный MQTT-топик для отправки температуры',
 					fieldType: 'text',
 					required: true,
 				},
@@ -246,7 +246,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'temp_state_topic',
 				{
-					label: 'temp_state_topic',
+					label: 'temp_state_topic — MQTT-топик обратной связи для получения температуры',
 					fieldType: 'text',
 					required: true,
 				},
@@ -254,7 +254,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'max_temp',
 				{
-					label: 'max_temp',
+					label: 'max_temp — Максимальная температура',
 					fieldType: 'number',
 					required: true,
 				},
@@ -262,7 +262,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'min_temp',
 				{
-					label: 'min_temp',
+					label: 'min_temp — Минимальная температура',
 					fieldType: 'number',
 					required: true,
 				},
