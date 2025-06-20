@@ -166,6 +166,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				{
 					label: 'icon',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
@@ -201,6 +202,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				{
 					label: 'icon_open',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
@@ -209,6 +211,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				{
 					label: 'icon_close',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
@@ -244,6 +247,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				{
 					label: 'icon',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],

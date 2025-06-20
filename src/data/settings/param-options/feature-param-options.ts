@@ -26,6 +26,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				{
 					label: 'icon',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
@@ -47,6 +48,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				{
 					label: 'icon',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
@@ -68,6 +70,7 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				{
 					label: 'icon',
 					fieldType: 'icon',
+                    placeholder: '',
 					required: true,
 				},
 			],
