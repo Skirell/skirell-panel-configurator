@@ -742,7 +742,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'modes',
 				{
-					label: 'Режимы работы',
+					label: 'modes — Массив режимов при включенном состоянии',
 					fieldType: 'feature',
 					feature: Feature.modes,
 					featurePanelSettings: { 
@@ -755,7 +755,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'mode_command_topic',
 				{
-					label: 'mode_command_topic',
+					label: 'mode_command_topic — Командный MQTT-топик для режимов',
 					fieldType: 'text',
 					required: true,
 				},
@@ -763,7 +763,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'mode_state_topic',
 				{
-					label: 'mode_state_topic',
+					label: 'mode_state_topic — MQTT-топик обратной связи для режимов',
 					fieldType: 'text',
 					required: true,
 				},
@@ -771,7 +771,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'off_payload',
 				{
-					label: 'off_payload',
+					label: 'off_payload — Команда (Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -779,7 +779,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'currentTemp_state_topic',
 				{
-					label: 'currentTemp_state_topic',
+					label: 'currentTemp_state_topic — MQTT-топик обратной связи текущей температуры',
 					fieldType: 'text',
 					required: true,
 				},
@@ -787,7 +787,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'targetTemp_command_topic',
 				{
-					label: 'targetTemp_command_topic',
+					label: 'targetTemp_command_topic — Командный MQTT-топик для заданной температуры (уставки)',
 					fieldType: 'text',
 					required: true,
 				},
@@ -795,7 +795,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'targetTemp_state_topic',
 				{
-					label: 'targetTemp_state_topic',
+					label: 'targetTemp_state_topic — MQTT-топик обратной связи для заданной температуры (уставки)',
 					fieldType: 'text',
 					required: true,
 				},
@@ -803,7 +803,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'fan_command_topic',
 				{
-					label: 'fan_command_topic',
+					label: 'fan_command_topic — Командный MQTT-топик для дополнительных режимов',
 					fieldType: 'text',
 					required: true,
 				},
@@ -811,7 +811,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'fan_state_topic',
 				{
-					label: 'fan_state_topic',
+					label: 'fan_state_topic — MQTT-топик обратной связи для дополнительных режимов',
 					fieldType: 'text',
 					required: true,
 				},
@@ -819,7 +819,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'fan_modes',
 				{
-					label: 'fan_modes',
+					label: 'fan_modes — Массив дополнительных режимов',
 					fieldType: 'feature',
 					feature: Feature.fan_mode,
 					featurePanelSettings: {
@@ -837,7 +837,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_command_topic',
 				{
-					label: 'OnOff_command_topic',
+					label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
 					fieldType: 'text',
 					fieldSettings: {},
 					required: true,
@@ -846,7 +846,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OnOff_state_topic',
 				{
-					label: 'OnOff_state_topic',
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
 					fieldType: 'text',
 					required: true,
 				},
@@ -854,7 +854,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_on',
 				{
-					label: 'payload_on',
+					label: 'payload_on — Команда (Сообщение) для включения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -862,7 +862,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_off',
 				{
-					label: 'payload_off',
+					label: 'payload_off — Команда (Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
@@ -870,7 +870,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'targetTemp_command_topic',
 				{
-					label: 'targetTemp_command_topic',
+					label: 'targetTemp_command_topic — Командный MQTT-топик для заданной температуры (уставки)',
 					fieldType: 'text',
 					required: true,
 				},
@@ -878,7 +878,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'targetTemp_state_topic',
 				{
-					label: 'targetTemp_state_topic',
+					label: 'targetTemp_state_topic — MQTT-топик обратной связи для заданной температуры (уставки)',
 					fieldType: 'text',
 					required: true,
 				},
@@ -886,7 +886,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'sensor',
 				{
-					label: 'sensor',
+					label: 'sensor — Массив с датчиками',
 					fieldType: 'feature',
 					feature: Feature.sensor,
 					featurePanelSettings: { 
@@ -898,7 +898,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'sensor_main',
 				{
-					label: 'sensor_main',
+					label: 'sensor_main — Номер главного датчика, выводимого на блок устройства',
 					fieldType: 'number',
 					savePath: 'data/variant/sensors',
 					required: true,
