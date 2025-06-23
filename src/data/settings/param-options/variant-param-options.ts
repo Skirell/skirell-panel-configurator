@@ -3,6 +3,7 @@ import { ParamOption } from '../../../global/types/option';
 import { DeviceVariant } from '../../enums/device';
 import { Feature } from '../../enums/feature';
 import { Operator } from '../../enums/operator';
+import { ConditionOperator } from '../../enums/operator';
 import { Action } from '../../enums/action';
 
 export const VARIANT_PARAM_OPTIONS = new Map<
@@ -275,7 +276,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'orientation',
 				{
-					label: 'Направление',
+					label: 'orientation - Направление',
 					fieldType: 'options',
 					fieldOptions: [
 						{ label: 'Горизонтально', value: 'Horizontal' },
@@ -287,15 +288,48 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'OpenCloseStop_command_topic',
 				{
-					label: 'OpenCloseStop_command_topic',
+					label: 'OpenCloseStop_command_topic - Объединенный командный MQTT-топик (откр/закр/стоп)',
 					fieldType: 'text',
-					required: true,
+					fieldSettings: {
+						behavior: {
+							dependencies: [
+								{
+									fieldKey: 'open_command_topic',
+									operator: Operator.empty,
+								},
+                                {
+									fieldKey: 'close_command_topic',
+									operator: Operator.empty,
+								},
+							],
+
+                            operator: ConditionOperator.or,
+
+                            actions: {
+								true: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: true,
+									},
+								],
+
+								false: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: false,
+									},
+								],
+							},
+						},
+					},
 				},
 			],
 			[
 				'open_command_topic',
 				{
-					label: 'open_command_topic',
+					label: 'open_command_topic - командный MQTT-топик для открытия',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -305,52 +339,95 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 									operator: Operator.empty,
 								},
 							],
+
+                            actions: {
+								true: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: true,
+									},
+								],
+
+								false: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: false,
+									},
+								],
+							},
 						},
 					},
-					required: true,
 				},
 			],
 			[
 				'close_command_topic',
 				{
-					label: 'close_command_topic',
+					label: 'close_command_topic - командный MQTT-топик для закрытия',
 					fieldType: 'text',
-					required: true,
+					fieldSettings: {
+						behavior: {
+							dependencies: [
+								{
+									fieldKey: 'OpenCloseStop_command_topic',
+									operator: Operator.empty,
+								},
+							],
+
+                            actions: {
+								true: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: true,
+									},
+								],
+
+								false: [
+									{
+										type: Action.setState,
+										key: 'required',
+										value: false,
+									},
+								],
+							},
+						},
+					},
 				},
 			],
 			[
 				'stop_command_topic',
 				{
-					label: 'stop_command_topic',
-					fieldType: 'text',
-					required: true,
+					label: 'stop_command_topic - командный MQTT-топик для остановки',
+					fieldType: 'text'
 				},
 			],
 			[
 				'payload_open',
 				{
-					label: 'payload_open',
+					label: 'payload_open - сообщение для открытия',
 					fieldType: 'text',
 				},
 			],
 			[
 				'payload_close',
 				{
-					label: 'payload_close',
+					label: 'payload_close - сообщение для закрытия',
 					fieldType: 'text',
 				},
 			],
 			[
 				'payload_stop',
 				{
-					label: 'payload_stop',
+					label: 'payload_stop - сообщение для остановки',
 					fieldType: 'text',
 				},
 			],
 			[
 				'OpenClose_state_topic',
 				{
-					label: 'OpenClose_state_topic',
+					label: 'OpenClose_state_topic - MQTT-топик обратной связи, для откр/закр',
 					fieldType: 'text',
 					required: true,
 				},
@@ -358,7 +435,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'state_open',
 				{
-					label: 'state_open',
+					label: 'state_open - сообщение открытия, отправляемое шторами',
 					fieldType: 'text',
 					required: true,
 				},
@@ -366,7 +443,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'state_close',
 				{
-					label: 'state_close',
+					label: 'state_close - сообщение закрытия, отправляемое шторами',
 					fieldType: 'text',
 					required: true,
 				},
@@ -374,7 +451,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_command_topic',
 				{
-					label: 'position_command_topic',
+					label: 'position_command_topic - командный MQTT-топик для установки позиции',
 					fieldType: 'text',
 					required: true,
 				},
@@ -382,7 +459,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_state_topic',
 				{
-					label: 'position_state_topic',
+					label: 'position_state_topic - MQTT-топик обратной связи для позиции',
 					fieldType: 'text',
 					required: true,
 				},
@@ -390,7 +467,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_open',
 				{
-					label: 'position_open',
+					label: 'position_open - конечная позиция в положении открыто',
 					fieldType: 'number',
 					required: true,
 				},
@@ -398,7 +475,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_close',
 				{
-					label: 'position_close',
+					label: 'position_close - конечная позиция в положении закрыто',
 					fieldType: 'number',
 					required: true,
 				},
@@ -406,14 +483,14 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'lameli',
 				{
-					label: 'Ламели',
+					label: 'Ламели - вкл/выкл',
 					fieldType: 'boolean',
 				},
 			],
 			[
 				'OpenClose_lameli_command_topic',
 				{
-					label: 'OpenClose_lameli_command_topic',
+					label: 'OpenClose_lameli_command_topic - Объединенный командный MQTT-топик (откр/закр/стоп)',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -449,7 +526,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'open_lameli_command_topic',
 				{
-					label: 'open_lameli_command_topic',
+					label: 'open_lameli_command_topic - командный MQTT-топик для открытия',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -485,7 +562,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'close_lameli_command_topic',
 				{
-					label: 'close_lameli_command_topic',
+					label: 'close_lameli_command_topic - командный MQTT-топик для закрытия',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -521,7 +598,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_lameli_open',
 				{
-					label: 'payload_lameli_open',
+					label: 'payload_lameli_open - сообщение для открытия',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -557,7 +634,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'payload_lameli_close',
 				{
-					label: 'payload_lameli_close',
+					label: 'payload_lameli_close - сообщение для закрытия',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -593,7 +670,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_lameli_command_topic',
 				{
-					label: 'position_lameli_command_topic',
+					label: 'position_lameli_command_topic - командный MQTT-топик для установки позиции',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -629,7 +706,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_lameli_state_topic',
 				{
-					label: 'position_lameli_state_topic',
+					label: 'position_lameli_state_topic - MQTT-топик обратной связи для позиции',
 					fieldType: 'text',
 					fieldSettings: {
 						behavior: {
@@ -665,7 +742,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_lameli_open',
 				{
-					label: 'position_lameli_open',
+					label: 'position_lameli_open - конечная позиция в положении открыто',
 					fieldType: 'number',
 					fieldSettings: {
 						behavior: {
@@ -701,7 +778,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 			[
 				'position_lameli_close',
 				{
-					label: 'position_lameli_close',
+					label: 'position_lameli_close - конечная позиция в положении закрыто',
 					fieldType: 'number',
 					fieldSettings: {
 						behavior: {
