@@ -961,14 +961,15 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				},
 			],
 			[
-				'sensor',
+				'sensors',
 				{
-					label: 'sensor — Массив с датчиками',
+					label: 'sensors — Массив с датчиками',
 					fieldType: 'feature',
-					feature: Feature.sensor,
+					feature: Feature.sensors,
 					featurePanelSettings: { 
                         maxCount: 3, 
-                        minCount: 0 
+                        minCount: 0,
+                        keyPrefix: 'sensor_'
                     },
 				},
 			],
@@ -977,7 +978,6 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				{
 					label: 'sensor_main — Номер главного датчика, выводимого на блок устройства',
 					fieldType: 'number',
-					savePath: 'data/variant/sensors',
 					required: true,
 				},
 			],

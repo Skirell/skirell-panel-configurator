@@ -63,29 +63,29 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 		]),
 	],
 	[
-		Feature.sensor,
+		Feature.sensors,
 		new Map<string, ParamOption>([
 			[
-				'icon — иконка, отображаемая в настройках.',
+				'icon',
 				{
-					label: 'icon',
+					label: 'icon — иконка, отображаемая в настройках',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
 				},
 			],
 			[
-				'measure — единица измерения (например: «°C»)',
+				'measure',
 				{
-					label: 'measure',
+					label: 'measure — единица измерения',
 					fieldType: 'text',
 					required: true,
 				},
 			],
 			[
-				'state_topic - MQTT-топик обратной связи',
+				'state_topic',
 				{
-					label: 'state_topic',
+					label: 'state_topic — MQTT-топик обратной связи',
 					fieldType: 'text',
 					required: true,
 				},

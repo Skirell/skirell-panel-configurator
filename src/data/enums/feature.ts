@@ -1,5 +1,5 @@
 export enum Feature {
-	sensor = 'sensor',
+	sensors = 'sensors',
 	modes = 'modes',
 	fan_mode = 'fan_mode',
 }

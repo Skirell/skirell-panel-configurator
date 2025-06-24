@@ -8,13 +8,6 @@ import BaseField from '../BaseField';
 import FeaturePanelFieldUI from './FeaturePanelFieldUI';
 import Tab from './Tab/Tab';
 
-// ВРЕМЕННО
-interface Sensor {
-	icon: any;
-	measure: any;
-	state_topic: any;
-}
-
 export default class FeaturePanelField extends FeaturePanelFieldUI {
 	protected readonly value: Map<string, any> = new Map();
 
@@ -36,10 +29,7 @@ export default class FeaturePanelField extends FeaturePanelFieldUI {
 	public setValue(record: Record<string, any>): void {
 		this.clearTabs();
 
-		const records =
-			this.feature === Feature.sensor
-				? this.deserializeSensors(record, this.featureSettings.maxCount)
-				: Object.values(record).map((tab: any) =>
+		const records = Object.values(record).map((tab: any) =>
 						// фильтруем только релевантные поля по свойству
 						Object.fromEntries(
 							Object.entries(tab).filter(([key]) =>
@@ -64,8 +54,6 @@ export default class FeaturePanelField extends FeaturePanelFieldUI {
 	}
 
 	public getValue(): Record<string, any> {
-		if (this.feature === Feature.sensor) return this.serializeSensors();
-
 		const result: Record<string, Record<string, any>> = {};
 		const featureParams = getFeatureParams(this.feature);
 		const max = this.featureSettings.maxCount;
@@ -106,54 +94,5 @@ export default class FeaturePanelField extends FeaturePanelFieldUI {
 			default:
 				return '';
 		}
-	}
-
-	// ВРЕМЕННО
-	private serializeSensors(): Record<string, any> {
-		const sensors: Record<string, any> = {};
-		const max = this.featureSettings.maxCount;
-
-		for (let i = 0; i < max; i++) {
-			const idx = i + 1;
-
-			if (i < this.tabs.length && this.tabs[i].validateFields()) {
-				const tab = this.tabs[i];
-				tab.save();
-
-				const sensor = tab.toJSON();
-				sensors[`sensor_${idx}_icon`] = sensor.icon;
-				sensors[`sensor_${idx}_measure`] = sensor.measure;
-				sensors[`sensor_${idx}_state_topic`] = sensor.state_topic;
-			} else {
-				sensors[`sensor_${idx}_icon`] = '';
-				sensors[`sensor_${idx}_measure`] = '';
-				sensors[`sensor_${idx}_state_topic`] = '';
-			}
-		}
-
-		return sensors;
-	}
-
-	private deserializeSensors(
-		serialized: Record<string, any>,
-		maxCount: number,
-	): Sensor[] {
-		const sensors: Sensor[] = [];
-
-		for (let i = 1; i <= maxCount; i++) {
-			const iconKey = `sensor_${i}_icon`;
-			const measureKey = `sensor_${i}_measure`;
-			const stateTopicKey = `sensor_${i}_state_topic`;
-
-			const icon = serialized[iconKey];
-			const measure = serialized[measureKey];
-			const state_topic = serialized[stateTopicKey];
-			// пропустим пустые сенсоры
-			if (icon === '' || measure === '' || state_topic === '') continue;
-
-			sensors.push({ icon, measure, state_topic });
-		}
-
-		return sensors;
 	}
 }

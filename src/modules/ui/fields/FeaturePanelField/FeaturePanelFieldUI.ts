@@ -73,7 +73,7 @@ export default abstract class FeaturePanelFieldUI extends BaseField {
             case Feature.modes:
             case Feature.fan_mode:
                 return 'Режим';
-            case Feature.sensor:
+            case Feature.sensors:
                 return 'Датчик';
             default:
                 return 'Блок';
