@@ -10,6 +10,7 @@ import { Page } from '../page/Page';
 import BlockUI from './BlockUI';
 import { ParamOption } from '../../../global/types/option';
 import BaseField from '../../ui/fields/BaseField';
+import { FeaturePanelField } from '../../ui/fields/FeaturePanelField';
 
 export default class Block implements IJsonSerializable {
 	private device: Device | null = null;
@@ -41,10 +42,9 @@ export default class Block implements IJsonSerializable {
 	}
 
 	public toJSON(): SerializedBlock {
-        // Создаём упорядоченный объект data
         const orderedData: Record<string, any> = {};
+        const variantData: Record<string, any> = {};
 
-        // Получаем поля из UI и сортируем их по order
         const fields: BaseField[] = Array.from(this.UI.getFields().values());
         const sortedFields = fields.sort((a: BaseField, b: BaseField) => {
             const orderA = a.option.order ?? Infinity;
@@ -52,21 +52,37 @@ export default class Block implements IJsonSerializable {
             return orderA - orderB;
         });
 
-        // Добавляем поля в порядке сортировки
         sortedFields.forEach((field: BaseField) => {
             const key = field.key;
-            const option = field.option;
-            const path = this.resolvePath(key, option.savePath);
-            const value = getByPath(this, path);
-            if (value !== undefined) {
-                orderedData[key] = value;
+            const value = field.getValue();
+
+            if (value === undefined || value === null) return;
+
+            if (typeof value === 'object' && !Array.isArray(value)) {
+                if (isFieldInVariant(this.deviceVariant, key)) {
+                    variantData[key] = value;
+                } else {
+                    orderedData[key] = value;
+                }
+            } else if (field instanceof FeaturePanelField) {
+                if (isFieldInVariant(this.deviceVariant, key)) {
+                    variantData[key] = value;
+                } else {
+                    orderedData[key] = value;
+                }
+            } else {
+                if (isFieldInVariant(this.deviceVariant, key)) {
+                    variantData[key] = value;
+                } else {
+                    orderedData[key] = value;
+                }
             }
         });
 
-        // Добавляем variant и variant_type, если они есть
-        if (this.requiresVariant() && this.data.variant) {
-            orderedData.variant = this.data.variant;
+        if (Object.keys(variantData).length > 0) {
+            orderedData.variant = variantData;
         }
+        
         if (this.deviceVariant) {
             orderedData.variant_type = this.deviceVariant;
         }
@@ -79,15 +95,14 @@ export default class Block implements IJsonSerializable {
     }
 
 	public resolvePath(fieldKey: string, overridePath?: string): string {
-		const basePath =
-			overridePath ??
-			PATH_MAP.get(
-				isFieldInVariant(this.deviceVariant, fieldKey)
-					? PathType.variant
-					: PathType.base,
-			)!;
-		return `${basePath}${VALUES.PATH_SEPARATOR}${fieldKey}`;
-	}
+        const basePath = overridePath ?? PATH_MAP.get(
+            isFieldInVariant(this.deviceVariant, fieldKey)
+                ? PathType.variant
+                : PathType.base
+        )!;
+        
+        return `${basePath}${VALUES.PATH_SEPARATOR}${fieldKey}`;
+    }
 
 	public setParam(fieldKey: string, value: any, path?: string): any {
 		return setByPath(this, this.resolvePath(fieldKey, path), value);
