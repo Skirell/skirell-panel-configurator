@@ -6,10 +6,18 @@
 }
 
 .field--invalid {
-	border-color: solid #f92f18; /* Красная рамка */
-	color: #c0392b; /* Цвет текста ошибки */
-	outline: none;
-	box-shadow: 0 0 15px rgba(233, 33, 10, 0.778);
+    /* Легкая граница вместо резкой красной линии */
+    border: 1px solid #f92e18;
+    border-radius: 4px;
+
+    /* Цвет текста ошибки */
+    color: #c0392b;
+
+    /* Плавная анимация появления */
+    transition: all 0.3s ease-in-out;
+
+    /* Мягкая тень вокруг поля */
+    box-shadow: 0 0 6px #f92e18;
 }
 
 label {
@@ -192,7 +200,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 60px;
+    width: 400px;
     height: 34px;
     vertical-align: middle;
     margin-bottom: 41px;
@@ -205,6 +213,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .slider {
+    width: 60px !important;
     position: absolute;
     cursor: pointer;
     top: 0;

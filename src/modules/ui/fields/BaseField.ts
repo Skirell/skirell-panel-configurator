@@ -73,6 +73,8 @@ export default abstract class BaseField<T = any> {
 					existing.remove();
 				}
 			}
+
+            this.validate();
 		}
 	}
 
@@ -81,16 +83,20 @@ export default abstract class BaseField<T = any> {
 	}
 
 	validate(): boolean {
-		if (
-			this.required &&
-			(this.value === null || this.value === undefined || this.value === '')
-		) {
-			this.inputElement?.classList.add(FieldClass.INVALID);
-			return false;
-		}
-		this.inputElement?.classList.remove(FieldClass.INVALID);
-		return true;
-	}
+        const isEmpty =
+            this.value === null ||
+            this.value === undefined ||
+            this.value === '' ||
+            (Array.isArray(this.value) && this.value.length === 0);
+    
+        if (this.required && isEmpty) {
+            this.inputElement?.classList.add(FieldClass.INVALID);
+            return false;
+        }
+    
+        this.inputElement?.classList.remove(FieldClass.INVALID);
+        return true;
+    }
 
 	protected refreshUI(): void {
 		// переопределяется в потомках при необходимости
