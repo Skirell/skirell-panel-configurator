@@ -6,12 +6,23 @@ import { CHANNELS } from '../data/constants/channels';
 let mainWindow: BrowserWindow | null = null;
 
 function createWindow() {
+    const baseIconPath = path.resolve(__dirname, '../../icons');
+
+    let iconPath = path.join(baseIconPath, 'linux/icon.png'); // fallback
+
+    if (process.platform === 'win32') {
+        iconPath = path.join(baseIconPath, 'win/icon.ico');
+    } else if (process.platform === 'darwin') {
+        iconPath = path.join(baseIconPath, 'mac/icon.icns');
+    }
+
 	mainWindow = new BrowserWindow({
 		webPreferences: {
 			//preload: path.join(__dirname, 'render', 'preload.js'), // опционально
 			contextIsolation: false,
 			nodeIntegration: true,
 		},
+        icon: iconPath,
 	});
 
 	mainWindow.maximize();
