@@ -72,7 +72,11 @@ class BlockManager {
 		const primaryPage = this.selectedBlock.PrimaryPage;
 		primaryPage.removeBlock(this.selectedBlock);
 
-		this.selectedBlock = primaryPage.Blocks[0];
+        this.selectedBlock = primaryPage.Blocks[0];
+
+        if (this.selectedBlock) {
+            App.Controller.BlockController.bindBlock(this.selectedBlock);
+        }
 	}
 
 	public saveSelectedBlock(): void {
