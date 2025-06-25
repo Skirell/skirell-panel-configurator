@@ -178,21 +178,21 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1',
+					label: 'param_1 — назначение блока (например, тип устройства: «Штора», «Ламели»)',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2',
+					label: 'param_2 — локация или контекст использования (например, «Кухня», «Гостиная»)',
 					fieldType: 'text',
 				},
 			],
 			[
 				'setting_name',
 				{
-					label: 'setting_name',
+					label: 'setting_name — название устройства в настройках',
 					fieldType: 'text',
 					required: true,
 				},
@@ -200,7 +200,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'icon_open',
 				{
-					label: 'icon_open',
+					label: 'icon_open — иконка «Открыто в блоке ~ Открыть в настройках»',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
@@ -209,7 +209,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'icon_close',
 				{
-					label: 'icon_close',
+					label: 'icon_close — иконка Закрыто в блоке ~ Закрыть в настройках»',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
