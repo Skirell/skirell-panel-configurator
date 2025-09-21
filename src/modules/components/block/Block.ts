@@ -42,57 +42,45 @@ export default class Block implements IJsonSerializable {
 	}
 
 	public toJSON(): SerializedBlock {
-        const orderedData: Record<string, any> = {};
-        const variantData: Record<string, any> = {};
+		const orderedData: Record<string, any> = {};
+		const variantData: Record<string, any> = {};
 
-        const fields: BaseField[] = Array.from(this.UI.getFields().values());
-        const sortedFields = fields.sort((a: BaseField, b: BaseField) => {
-            const orderA = a.option.order ?? Infinity;
-            const orderB = b.option.order ?? Infinity;
-            return orderA - orderB;
-        });
+		const fields: BaseField[] = Array.from(this.UI.getFields().values());
+		const sortedFields = fields.sort((a: BaseField, b: BaseField) => {
+			const orderA = a.option.order ?? Infinity;
+			const orderB = b.option.order ?? Infinity;
+			return orderA - orderB;
+		});
 
-        sortedFields.forEach((field: BaseField) => {
-            const key = field.key;
-            const value = field.getValue();
+		sortedFields.forEach((field: BaseField) => {
+			const key = field.key;
+			const value = this.getParam(key);
 
-            if (value === undefined || value === null) return;
+			console.log(`Processing field ${key}:`, { value, type: typeof value, variant: isFieldInVariant(this.deviceVariant, key) });
 
-            if (typeof value === 'object' && !Array.isArray(value)) {
-                if (isFieldInVariant(this.deviceVariant, key)) {
-                    variantData[key] = value;
-                } else {
-                    orderedData[key] = value;
-                }
-            } else if (field instanceof FeaturePanelField) {
-                if (isFieldInVariant(this.deviceVariant, key)) {
-                    variantData[key] = value;
-                } else {
-                    orderedData[key] = value;
-                }
-            } else {
-                if (isFieldInVariant(this.deviceVariant, key)) {
-                    variantData[key] = value;
-                } else {
-                    orderedData[key] = value;
-                }
-            }
-        });
+			if (value !== undefined) {
+				if (isFieldInVariant(this.deviceVariant, key)) {
+					variantData[key] = value;
+				} else {
+					orderedData[key] = value;
+				}
+			}
+		});
 
-        if (Object.keys(variantData).length > 0) {
-            orderedData.variant = variantData;
-        }
-        
-        if (this.deviceVariant) {
-            orderedData.variant_type = this.deviceVariant;
-        }
+		if (Object.keys(variantData).length > 0) {
+			orderedData.variant = variantData;
+		}
+		
+		if (this.deviceVariant) {
+			orderedData.variant_type = this.deviceVariant;
+		}
 
-        return {
-            block: this.Index,
-            type: this.device!,
-            data: orderedData,
-        };
-    }
+		return {
+			block: this.Index,
+			type: this.device!,
+			data: orderedData,
+		};
+	}
 
 	public resolvePath(fieldKey: string, overridePath?: string): string {
         const basePath = overridePath ?? PATH_MAP.get(

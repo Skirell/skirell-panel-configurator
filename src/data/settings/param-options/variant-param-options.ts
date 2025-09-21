@@ -268,6 +268,13 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 					required: true,
 				},
 			],
+			[
+				'temp_measure',
+				{
+					label: 'temp_measure — Единица измерения температуры',
+					fieldType: 'text'
+				},
+			],
 		]),
 	],
 	[
@@ -817,14 +824,48 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 		DeviceVariant.climate_variant_cond,
 		new Map<string, ParamOption>([
 			[
+				'OnOff_command_topic',
+				{
+					label: 'OnOff_command_topic — Командный MQTT-топик для отправки команды',
+					fieldType: 'text',
+					fieldSettings: {},
+					required: true,
+				},
+			],
+			[
+				'OnOff_state_topic',
+				{
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения состояния',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
+				'payload_on',
+				{
+					label: 'payload_on — Команда (Сообщение) для включения',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
+				'payload_off',
+				{
+					label: 'payload_off — Команда (Сообщение) для выключения',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
 				'modes',
 				{
 					label: 'modes — Массив режимов при включенном состоянии',
 					fieldType: 'feature',
 					feature: Feature.modes,
 					featurePanelSettings: { 
-                        maxCount: 4, 
-                        minCount: 1 
+                        maxCount: 5, 
+                        minCount: 2,
+						minOrEmpty: true
                     },
 					required: true,
 				},
@@ -841,14 +882,6 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				'mode_state_topic',
 				{
 					label: 'mode_state_topic — MQTT-топик обратной связи для режимов',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'off_payload',
-				{
-					label: 'off_payload — Команда (Сообщение) для выключения',
 					fieldType: 'text',
 					required: true,
 				},
