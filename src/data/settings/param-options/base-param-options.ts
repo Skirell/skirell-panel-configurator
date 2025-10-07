@@ -285,4 +285,72 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			],
 		]),
 	],
+	[
+		Device.switch,
+		new Map<string, ParamOption>([
+			[
+				'param_1',
+				{
+					label: 'param_1 — назначение блока (например: Ужин, Кино)',
+					fieldType: 'text',
+				},
+			],
+			[
+				'param_2',
+				{
+					label: 'param_2 — локация или контекст использования',
+					fieldType: 'text',
+				},
+			],
+			[
+				'icon',
+				{
+					label: 'icon — иконка, отображаемая на блоке',
+					fieldType: 'icon',
+                    placeholder: '',
+					required: true,
+				},
+			],
+			[
+				'color',
+				{
+					label: 'color — цвет блока в активном состоянии',
+					fieldType: 'color',
+					required: true,
+				},
+			],
+			[
+				'OnOff_command_topic',
+				{
+					label: 'OnOff_command_topic — MQTT-топик для отправки команды',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
+				'OnOff_state_topic',
+				{
+					label: 'OnOff_state_topic — MQTT-топик обратной связи для получения команды',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
+				'payload_on',
+				{
+					label: 'payload_on — команда включения',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+			[
+				'payload_off',
+				{
+					label: 'payload_off — команда выключения',
+					fieldType: 'text',
+					required: true,
+				},
+			],
+		]),
+	],
 ]) as ReadonlyMap<Device, ReadonlyMap<string, ParamOption>>;

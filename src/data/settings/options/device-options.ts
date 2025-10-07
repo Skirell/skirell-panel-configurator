@@ -36,6 +36,13 @@ export const DEVICE_OPTIONS = new Map<Device, EnumOption>([
 			label: 'Датчик',
 		},
 	],
+
+	[
+		Device.switch,
+		{
+			label: 'Переключатель',
+		},
+	],
 ]) as ReadonlyMap<Device, EnumOption>;
 
 export const DEVICE_ORDER: Device[] = [
@@ -44,4 +51,5 @@ export const DEVICE_ORDER: Device[] = [
     Device.climate,
     Device.cover,
     Device.sensor,
+	Device.switch,
 ];

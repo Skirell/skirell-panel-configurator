@@ -4,6 +4,7 @@ export enum Device {
 	climate = 'climate',
 	cover = 'cover',
 	sensor = 'sensor',
+	switch = 'switch',
 }
 
 export enum DeviceVariant {
