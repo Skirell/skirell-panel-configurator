@@ -139,7 +139,13 @@ export default class Block implements IJsonSerializable {
 			const isInBase = isFieldInBase(this.device, field.key);
 			const isInVariant = isFieldInVariant(this.DeviceVariant, field.key);
 
-			const value = field.getValue() ?? '';
+			let value = field.getValue();
+			// Для feature полей (например, sensors) сохраняем null как есть
+			if (field.option.fieldType === 'feature' && value === null) {
+				// null останется null для setByPath
+			} else {
+				value = value ?? '';
+			}
 			const path =
 				option.savePath ??
 				(isInVariant

@@ -2,7 +2,7 @@
 .color-dropdown {
 	position: relative;
 	width: 100%;
-	max-width: 400px;
+	max-width: 1000px;
 }
 
 .color-dropdown-button {
@@ -66,8 +66,8 @@
 
 .tabs-panel-container {
 	border-radius: 8px;
-	width: 400px;
-	max-width: 400px;
+	width: 1000px;
+	max-width: 1000px;
 	display: flex;
 	flex-direction: column;
 	margin-right: auto;

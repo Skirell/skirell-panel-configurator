@@ -4,7 +4,7 @@ import { BaseField } from '../../modules/ui/fields';
 
 type FieldType = 'text' | 'number' | CustomFieldType;
 
-type CustomFieldType = 'color' | 'boolean' | 'options' | 'feature' | icon;
+type CustomFieldType = 'color' | 'boolean' | 'options' | 'feature' | icon | 'color_type' | 'lameli';
 
 interface FieldOption {
 	label: string;

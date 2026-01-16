@@ -53,7 +53,7 @@ export default class FeaturePanelField extends FeaturePanelFieldUI {
 		this.refreshUI();
 	}
 
-	public getValue(): Record<string, any> {
+	public getValue(): Record<string, any> | null {
 		const result: Record<string, Record<string, any>> = {};
 		const featureParams = getFeatureParams(this.feature);
 		const max = this.featureSettings.maxCount;
@@ -65,16 +65,24 @@ export default class FeaturePanelField extends FeaturePanelFieldUI {
 			if (i < this.tabs.length && this.tabs[i].validateFields()) {
 				const tab = this.tabs[i];
 				tab.save();
-				result[fullKey] = tab.toJSON();
-			} else {
-				const phantomData: Record<string, any> = {};
-				for (const [key, option] of featureParams)
-					phantomData[key] = this.getDefaultValue(option);
-				result[fullKey] = phantomData;
+				const tabData = tab.toJSON();
+
+				// Проверяем, пустой ли датчик (все поля кроме measure пустые)
+				const isEmptySensor = Object.entries(tabData).every(([key, value]) => {
+					// Поле measure всегда должно быть включено, даже если пустое
+					if (key === 'measure') return false;
+					return value === '' || value === null || value === undefined;
+				});
+
+				// Добавляем только непустые датчики
+				if (!isEmptySensor) {
+					result[fullKey] = tabData;
+				}
 			}
 		}
 
-		return result;
+		// Если нет ни одного непустого датчика, возвращаем null
+		return Object.keys(result).length > 0 ? result : null;
 	}
 
 	public validate(): boolean {

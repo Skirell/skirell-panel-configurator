@@ -86,4 +86,11 @@ export const COLOR_OPTIONS = new Map<Color, ColorOption>([
             color: '#B34A00',
         },
     ],
+    [
+        Color.color_white,
+        {
+            label: 'Белый',
+            color: '#FFFFFF',
+        },
+    ],
 ]) as ReadonlyMap<Color, ColorOption>;

@@ -129,7 +129,7 @@ label {
 input,
 select {
 	width: 100%;
-	max-width: 400px;
+	max-width: 1000px;
 	padding: 10px;
 	border: 1px solid #424242;
 	border-radius: 4px;

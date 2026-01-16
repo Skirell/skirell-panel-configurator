@@ -27,6 +27,8 @@ interface ParamOption {
 	feature?: Feature;
 	// настройки панели со свойством
 	featurePanelSettings?: FeaturePanelSettings;
+	// тип ламели для поля lameli ('slider' или 'buttons')
+	lameliType?: 'slider' | 'buttons';
 	// обязательный ли
 	required?: true;
 	// путь сохранения в таблице относительно блока, например: 'data', 'data/variant', 'data/variant/something'

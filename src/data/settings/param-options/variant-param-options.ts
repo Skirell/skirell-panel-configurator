@@ -175,6 +175,14 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 					required: true,
 				},
 			],
+			[
+				'color_type',
+				{
+					label: 'color_type — Формат цвета',
+					fieldType: 'color_type',
+					required: true,
+				},
+			],
 		]),
 	],
 	[
@@ -293,79 +301,11 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				},
 			],
 			[
-				'OpenCloseStop_command_topic',
-				{
-					label: 'OpenCloseStop_command_topic - Объединенный командный MQTT-топик (откр/закр/стоп)',
-					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'open_command_topic',
-									operator: Operator.empty,
-								},
-                                {
-									fieldKey: 'close_command_topic',
-									operator: Operator.empty,
-								},
-							],
-
-                            operator: ConditionOperator.or,
-
-                            actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
-				},
-			],
-			[
 				'open_command_topic',
 				{
 					label: 'open_command_topic - командный MQTT-топик для открытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'OpenCloseStop_command_topic',
-									operator: Operator.empty,
-								},
-							],
-
-                            actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
@@ -373,34 +313,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				{
 					label: 'close_command_topic - командный MQTT-топик для закрытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'OpenCloseStop_command_topic',
-									operator: Operator.empty,
-								},
-							],
-
-                            actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
@@ -415,6 +328,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				{
 					label: 'payload_open - сообщение для открытия',
 					fieldType: 'text',
+					required: true,
 				},
 			],
 			[
@@ -422,6 +336,7 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				{
 					label: 'payload_close - сообщение для закрытия',
 					fieldType: 'text',
+					required: true,
 				},
 			],
 			[
@@ -429,30 +344,6 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				{
 					label: 'payload_stop - сообщение для остановки',
 					fieldType: 'text',
-				},
-			],
-			[
-				'OpenClose_state_topic',
-				{
-					label: 'OpenClose_state_topic - MQTT-топик обратной связи, для откр/закр',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'state_open',
-				{
-					label: 'state_open - сообщение открытия, отправляемое шторами',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'state_close',
-				{
-					label: 'state_close - сообщение закрытия, отправляемое шторами',
-					fieldType: 'text',
-					required: true,
 				},
 			],
 			[
@@ -488,334 +379,100 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				},
 			],
 			[
+				'help_position_open',
+				{
+					label: 'help_position_open - вспомогательная конечная позиция в положении открыто',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
+				'help_position_close',
+				{
+					label: 'help_position_close - вспомогательная конечная позиция в положении закрыто',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
 				'lameli',
 				{
-					label: 'Ламели - вкл/выкл',
-					fieldType: 'boolean',
+					label: 'Ламели — настройки управления ламелями',
+					fieldType: 'lameli',
+					savePath: 'data/variant',
+					lameliType: 'buttons',
+				},
+			],
+		]),
+	],
+	[
+		DeviceVariant.cover_variant_buttons,
+		new Map<string, ParamOption>([
+			[
+				'orientation',
+				{
+					label: 'orientation - Направление',
+					fieldType: 'options',
+					fieldOptions: [
+						{ label: 'Горизонтально', value: 'Horizontal' },
+						{ label: 'Вертикально', value: 'Vertical' },
+					],
+					required: true,
 				},
 			],
 			[
-				'OpenClose_lameli_command_topic',
+				'open_command_topic',
 				{
-					label: 'OpenClose_lameli_command_topic - Объединенный командный MQTT-топик (откр/закр/стоп)',
+					label: 'open_command_topic - командный MQTT-топик для открытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
-				'open_lameli_command_topic',
+				'close_command_topic',
 				{
-					label: 'open_lameli_command_topic - командный MQTT-топик для открытия',
+					label: 'close_command_topic - командный MQTT-топик для закрытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
-				'close_lameli_command_topic',
+				'stop_command_topic',
 				{
-					label: 'close_lameli_command_topic - командный MQTT-топик для закрытия',
+					label: 'stop_command_topic - командный MQTT-топик для остановки',
+					fieldType: 'text'
+				},
+			],
+			[
+				'payload_open',
+				{
+					label: 'payload_open - сообщение для открытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
-				'payload_lameli_open',
+				'payload_close',
 				{
-					label: 'payload_lameli_open - сообщение для открытия',
+					label: 'payload_close - сообщение для закрытия',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					required: true,
 				},
 			],
 			[
-				'payload_lameli_close',
+				'payload_stop',
 				{
-					label: 'payload_lameli_close - сообщение для закрытия',
+					label: 'payload_stop - сообщение для остановки',
 					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
 				},
 			],
 			[
-				'position_lameli_command_topic',
+				'lameli',
 				{
-					label: 'position_lameli_command_topic - командный MQTT-топик для установки позиции',
-					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
-				},
-			],
-			[
-				'position_lameli_state_topic',
-				{
-					label: 'position_lameli_state_topic - MQTT-топик обратной связи для позиции',
-					fieldType: 'text',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
-				},
-			],
-			[
-				'position_lameli_open',
-				{
-					label: 'position_lameli_open - конечная позиция в положении открыто',
-					fieldType: 'number',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
-				},
-			],
-			[
-				'position_lameli_close',
-				{
-					label: 'position_lameli_close - конечная позиция в положении закрыто',
-					fieldType: 'number',
-					fieldSettings: {
-						behavior: {
-							dependencies: [
-								{
-									fieldKey: 'lameli',
-									operator: Operator.equals,
-									value: true,
-								},
-							],
-
-							actions: {
-								true: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: true,
-									},
-								],
-
-								false: [
-									{
-										type: Action.setState,
-										key: 'required',
-										value: false,
-									},
-								],
-							},
-						},
-					},
+					label: 'Ламели — настройки управления ламелями',
+					fieldType: 'lameli',
+					savePath: 'data/variant',
+					lameliType: 'buttons',
 				},
 			],
 		]),
@@ -911,6 +568,22 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				},
 			],
 			[
+				'max_target',
+				{
+					label: 'max_target — Максимальное значение уставки',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
+				'min_target',
+				{
+					label: 'min_target — Минимальное значение уставки',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
 				'fan_command_topic',
 				{
 					label: 'fan_command_topic — Командный MQTT-топик для дополнительных режимов',
@@ -994,6 +667,22 @@ export const VARIANT_PARAM_OPTIONS = new Map<
 				},
 			],
 			[
+				'max_target',
+				{
+					label: 'max_target — Максимальное значение уставки',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
+				'min_target',
+				{
+					label: 'min_target — Минимальное значение уставки',
+					fieldType: 'number',
+					required: true,
+				},
+			],
+			[
 				'sensors',
 				{
 					label: 'sensors — Массив с датчиками',
@@ -1004,14 +693,6 @@ export const VARIANT_PARAM_OPTIONS = new Map<
                         minCount: 0,
                         keyPrefix: 'sensor_'
                     },
-				},
-			],
-			[
-				'sensor_main',
-				{
-					label: 'sensor_main — Номер главного датчика, выводимого на блок устройства',
-					fieldType: 'number',
-					required: true,
 				},
 			],
 		]),

@@ -22,7 +22,8 @@ export const DEVICE_VARIANT_MAP = new Map<Device, DeviceVariant[]>([
 	[
         Device.cover, 
         [
-            DeviceVariant.cover_variant_slider
+            DeviceVariant.cover_variant_slider,
+			DeviceVariant.cover_variant_buttons,
         ]
     ]
 ]);

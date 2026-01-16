@@ -26,7 +26,7 @@ export const DEVICE_OPTIONS = new Map<Device, EnumOption>([
 	[
 		Device.cover,
 		{
-			label: 'Занавесы',
+			label: 'Шторы',
 		},
 	],
 

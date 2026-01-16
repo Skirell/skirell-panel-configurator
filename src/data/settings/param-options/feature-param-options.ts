@@ -79,7 +79,6 @@ export const FEATURE_PARAM_OPTIONS = new Map<Feature, Map<string, ParamOption>>(
 				{
 					label: 'measure — единица измерения',
 					fieldType: 'text',
-					required: true,
 				},
 			],
 			[

@@ -8,21 +8,21 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1 — назначение блока (например: Ужин, Кино)',
+					label: 'param_1 — Первый блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2 — локация или контекст использования',
+					label: 'param_2 — Второй блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_3',
 				{
-					label: 'param_3 — название сценария или режима',
+					label: 'param_3 — Третий блок текста',
 					fieldType: 'text',
 				},
 			],
@@ -46,7 +46,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'payload',
 				{
-					label: 'payload — команда, отправляемая при нажатии',
+					label: 'payload — Команда(Сообщение) для отправки в MQTT-топик',
 					fieldType: 'text',
 					required: true,
 				},
@@ -73,8 +73,8 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'min',
 				{
-					label: 'min — минимальное значение(датчика) для цветового индикатора',
-					fieldType: 'text',
+					label: 'min — минимальное граница для цветового индикатора',
+					fieldType: 'number',
 					required: true,
 				},
 			],
@@ -82,7 +82,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				'stage_1',
 				{
 					label: 'stage_1 — первая граница для цветового индикатора',
-					fieldType: 'text',
+					fieldType: 'number',
 					required: true,
 				},
 			],
@@ -90,15 +90,15 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				'stage_2',
 				{
 					label: 'stage_2 — вторая граница для цветового индикатора',
-					fieldType: 'text',
+					fieldType: 'number',
 					required: true,
 				},
 			],
 			[
 				'max',
 				{
-					label: 'max — максимальное значение(датчика) для цветового индикатора',
-					fieldType: 'text',
+					label: 'max — максимальное граница для цветового индикатора',
+					fieldType: 'number',
 					required: true,
 				},
 			],
@@ -142,14 +142,14 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1 — назначение блока (например, тип устройства: «Люстра», «Подсветка»)',
+					label: 'param_1 — Первый блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2 — локация или контекст использования (например, «Кухня», «Гостиная»)',
+					label: 'param_2 — Второй блок текста',
 					fieldType: 'text',
 				},
 			],
@@ -178,14 +178,14 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1 — назначение блока (например, тип устройства: «Штора», «Ламели»)',
+					label: 'param_1 — Первый блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2 — локация или контекст использования (например, «Кухня», «Гостиная»)',
+					label: 'param_2 — Второй блок текста',
 					fieldType: 'text',
 				},
 			],
@@ -200,7 +200,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'icon_open',
 				{
-					label: 'icon_open — иконка «Открыто в блоке ~ Открыть в настройках»',
+					label: 'icon_open — иконка в положение "Открыто"',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
@@ -209,7 +209,7 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'icon_close',
 				{
-					label: 'icon_close — иконка Закрыто в блоке ~ Закрыть в настройках»',
+					label: 'icon_close — иконка в положение "Закрыто"',
 					fieldType: 'icon',
                     placeholder: '',
 					required: true,
@@ -223,14 +223,14 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1 — назначение блока (например, тип устройства: «Тёплый пол», «Увлажнитель»)',
+					label: 'param_1 — Первый блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2 — локация или контекст использования (например, «Кухня», «Гостиная»)',
+					label: 'param_2 — Второй блок текста',
 					fieldType: 'text',
 				},
 			],
@@ -252,27 +252,10 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 				},
 			],
 			[
-				'min_target',
-				{
-					label: 'min_target — минимальное значение целевой (заданной) температуры',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
-				'max_target',
-				{
-					label: 'max_target — максимальное значение целевой (заданной) температуры',
-					fieldType: 'text',
-					required: true,
-				},
-			],
-			[
 				'measure',
 				{
 					label: 'measure — единица измерения (например: «°C»)',
 					fieldType: 'text',
-					required: true,
 				},
 			],
 			[
@@ -291,14 +274,14 @@ export const BASE_PARAM_OPTIONS = new Map<Device, Map<string, ParamOption>>([
 			[
 				'param_1',
 				{
-					label: 'param_1 — назначение блока (например: Ужин, Кино)',
+					label: 'param_1 — Первый блок текста',
 					fieldType: 'text',
 				},
 			],
 			[
 				'param_2',
 				{
-					label: 'param_2 — локация или контекст использования',
+					label: 'param_2 — Второй блок текста',
 					fieldType: 'text',
 				},
 			],

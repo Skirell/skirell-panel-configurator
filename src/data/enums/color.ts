@@ -11,4 +11,5 @@ export enum Color {
     color_indigo = 'color_indigo',
     color_purple = 'color_purple',
     color_brown = 'color_brown',
+    color_white = 'color_white',
 }

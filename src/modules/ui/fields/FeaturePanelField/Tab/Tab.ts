@@ -41,7 +41,7 @@ export default class Tab implements IJsonSerializable {
 		const fields = this.UI.getFields();
 		fields.forEach(field => {
 			const option = field.option;
-			const value = field.getValue();
+			const value = field.getValue() ?? '';
 			const path = option.savePath ?? PATH_MAP.get(PathType.base);
 
 			setByPath(this, `${path}${VALUES.PATH_SEPARATOR}${field.key}`, value);

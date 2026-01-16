@@ -17,4 +17,5 @@ export enum DeviceVariant {
 	climate_variant_thermostat = 'climate_variant_thermostat',
 
 	cover_variant_slider = 'cover_variant_slider',
+	cover_variant_buttons = 'cover_variant_buttons',
 }
